@@ -24,6 +24,7 @@ import { MIOConnector } from "../../../store";
 import { UI } from "../../../components";
 
 import "./Main.scss";
+import { KBVBundleResource } from "@kbv/mioparser";
 
 class Main extends UI.MIOSlides<UI.MIOSlidesProps, UI.MIOSlidesState> {
     protected addMIOHelper: UI.AddMIOHelper;
@@ -50,11 +51,14 @@ class Main extends UI.MIOSlides<UI.MIOSlidesProps, UI.MIOSlidesState> {
         this.setState({});
     };
 
-    onAddMIOHelperParseFiles = (): void => {
+    onAddMIOHelperParseFiles = (lastMio: KBVBundleResource): void => {
         this.setState({
             slides: this.createSlides(),
             currentIndex: 0
         });
+        if (typeof lastMio !== "undefined") {
+            this.props.history.push("/mio/" + lastMio.identifier.value);
+        }
     };
 
     createSlides = (): JSX.Element[][] => {

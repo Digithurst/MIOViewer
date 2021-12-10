@@ -21,6 +21,21 @@ Beispiele für bereits entwickelte MIOs sind der Impfpass und das zahnärztliche
 
 Über diese Anwendung können entschlüsselte JSON- und XML MIOs eingelesen werden. Diese werden dann dargestellt und lassen sich auch als PDF exportieren.
 
+# Anpassungen durch Digithurst
+
+An dieser Version des MIO Viewers wurden durch die Digithurst GmbH & Co KG folgende Änderungen vorgenommen:
+
+ - nach dem Laden eines MIOs wird dieses automatisch geöffnet.
+ - der MIOViewer kann unter `/#/file` eine Datei über einen HTTP Aufruf laden. Dabei werden folgende Parameter beachtet:
+   - `urlPrefix`: ein Präfix der vor den Dateinamen gesetzt wird. Er überschreibt das Standardpräfix, der
+      in `.env` mit der Umgebungsvariable `REACT_APP_OPEN_FILE_DEFAULT_PREFIX` gesetzt ist.
+   - `name`: der Dateiname. Wird mit dem `urlPrefix` kombiniert, um die Aufruf-URL für die Datei zu generieren.
+
+Der `urlPrefix` für den Dateiaufruf verweist standardmäßig auf die 
+[MIO Testdateien](https://github.com/kassenaerztliche-bundesvereinigung/MIOTestData/tree/master/data/bundles).
+Ein Aufruf von `https://{mioviewer-url}:{port}/#/file?name=IM/Bundle-example.json` öffnet also die Beispieldatei für das 
+Impfheft aus dem Repository der Testdateien.
+
 ## Hintergrund
 
 Ab dem Jahr 2022 werden in der elektronische Patientenakte MIOs für alle Versicherten in Deutschland eingeführt.

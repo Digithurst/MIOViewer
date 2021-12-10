@@ -43,6 +43,12 @@ class AppDetail extends React.Component<RouteComponentProps> {
                 value: "© 2020 - 2022 KASSENÄRZTLICHE BUNDESVEREINIGUNG (KBV)"
             },
             {
+                label: "Anpassungen",
+                value:
+                    "Es wurden Anpassungen durch die Digithurst GmbH & Co KG vorgenommen. " +
+                    "<a href='https://github.com/Digithurst/MIOViewer' target='_blank' rel='noopener noreferrer'>Quellcode Veröffentlichung</a>"
+            },
+            {
                 label: "MIO-Support",
                 value: "<a href='https://mio.kbv.de/support' target='_blank' rel='noopener noreferrer'>https://mio.kbv.de/support</a>"
             }

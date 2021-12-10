@@ -27,6 +27,7 @@ import { MIOConnector, MIOConnectorType } from "../../../store";
 import { UI } from "../../../components";
 
 import "./Home.scss";
+import { KBVBundleResource } from "@kbv/mioparser";
 
 class Home extends React.Component<MIOConnectorType & RouteComponentProps> {
     protected addMIOHelper: UI.AddMIOHelper;
@@ -45,9 +46,12 @@ class Home extends React.Component<MIOConnectorType & RouteComponentProps> {
         this.setState({});
     };
 
-    onAddMIOHelperParseFiles = (): void => {
+    onAddMIOHelperParseFiles = (lastMio: KBVBundleResource): void => {
         if (this.props.location.pathname === "/home") {
             this.props.history.push("/main");
+        }
+        if (typeof lastMio !== "undefined") {
+            this.props.history.push("/mio/" + lastMio.identifier.value);
         }
     };
 

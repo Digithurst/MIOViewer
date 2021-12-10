@@ -48,7 +48,7 @@ export default class AddMIOHelper {
 
     constructor(
         readonly props: MIOConnectorType,
-        readonly onParseFiles: () => void,
+        readonly onParseFiles: (lastMio: KBVBundleResource) => void,
         readonly onStateChange: () => void
     ) {
         this._state = {
@@ -117,7 +117,7 @@ export default class AddMIOHelper {
     protected handleResult = (
         result: MIOParserResult | Error | GeneralError | undefined,
         fileName: string,
-        callback?: () => void
+        callback?: (lastMio: KBVBundleResource) => void
     ): void => {
         if (!result) return;
         // Result is a GeneralError or Error that was thrown during parsing
@@ -157,7 +157,7 @@ export default class AddMIOHelper {
                     (mio) => mio.identifier.value === value.identifier.value
                 );
                 if (mioExists) {
-                    if (callback) callback();
+                    if (callback) callback(value);
                 }
             }
             // No Errors during validation
@@ -180,9 +180,11 @@ export default class AddMIOHelper {
                         (mio) => mio.identifier.value === value.identifier.value
                     );
                     if (mioExists) {
-                        if (callback) callback();
+                        if (callback) callback(value);
                     } else {
-                        this.props.addMIO(value).then(callback);
+                        this.props.addMIO(value).then(() => {
+                            if (callback) callback(value);
+                        });
                     }
                 }
             }

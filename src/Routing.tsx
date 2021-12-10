@@ -23,6 +23,7 @@ import { IonRouterOutlet } from "@ionic/react";
 import { Route, RouteProps, Redirect, matchPath } from "react-router";
 
 import Intro from "./views/Comprehensive/Intro";
+import OpenFile from "./views/Comprehensive/OpenFile";
 import Home from "./views/Comprehensive/Home";
 import Main from "./views/Comprehensive/Main";
 import Profil from "./views/Comprehensive/Profil";
@@ -51,6 +52,7 @@ export default class Routing extends React.Component {
                 // BASIC
                 { path: "/home", component: Home, exact: true },
                 { path: "/main", component: Main, exact: true },
+                { path: "/file", component: OpenFile },
                 // MIOs
                 { path: "/mio/:id", component: Overview },
                 { path: "/mios/:id", component: Overview },
